@@ -10,7 +10,7 @@
 
 class ArduinoGFX: public GFX {
   public:
- ArduinoGFX(): _width(EsploraTFT.width()), _height(EsploraTFT.height()) {
+ ArduinoGFX(): GFX(EsploraTFT.width(), EsploraTFT.height()) {
     EsploraTFT.begin();
     EsploraTFT.background(constants->backgroundColor.r(), constants->backgroundColor.g(), constants->backgroundColor.b());    
   }
@@ -31,13 +31,6 @@ class ArduinoGFX: public GFX {
   void line(int x1, int y1, int x2, int y2) {
     EsploraTFT.line(x1, y1, x2, y2);
   }
-
-  int width() { return _width; }
-  int height() { return _height; }
-
- private:
-  int _width;
-  int _height;
 
 };
 #endif

@@ -7,7 +7,7 @@
 
 class LoggingGFX: public GFX {
  public:
- LoggingGFX(): _width(256), _height(256) {
+ LoggingGFX(): GFX(256, 256) {
   }
 
   void stroke(char r, char g, char b) {
@@ -25,13 +25,6 @@ class LoggingGFX: public GFX {
   void line(int x1, int y1, int x2, int y2) {
     std::cout << "line: " << x1 << " " << y1 << " " << x2 << " " << y2 << std::endl;
   }
-
-  int width() { return _width; }
-  int height() { return _height; }
-
- private:
-  int _width;
-  int _height;
 
 };
 

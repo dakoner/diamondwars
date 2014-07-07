@@ -6,7 +6,7 @@
 
 class GFX {
   public:
- GFX(): _width(256), _height(256) {
+ GFX(int width, int height): _width(width), _height(height) {
   }
 
   virtual void stroke(char r, char g, char b) = 0;
@@ -15,8 +15,8 @@ class GFX {
   virtual void rect(int x1, int y1, int x2, int y2) = 0;
   virtual void line(int x1, int y1, int x2, int y2) = 0;
 
-  virtual int width() = 0;
-  virtual int height()= 0;
+  virtual int width() { return _width; }
+  virtual int height() { return _height; }
 
  private:
   int _width;

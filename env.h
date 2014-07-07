@@ -20,7 +20,7 @@ class Env {
   Env() {
     ship = new Ship(Vec2(gfx->width() / 2, gfx->height() / 2), constants->shipColor);
   
-    enemy = new Enemy(Vec2(random(gfx->width()), random(gfx->height())), constants->enemyColor, Vec2(4, 4));
+    enemy = new Enemy(Vec2(random(gfx->width()), random(gfx->height())), constants->enemyColor, Vec2(3, 2));
   
     world = new World(Vec2(0, 0), constants->worldColor);
   
@@ -51,6 +51,8 @@ class Env {
   
     shootBullet();
     enemy->update(this);
+    std::cout << "enemy: " << enemy->position().x() << " " << enemy->position().y() << std::endl;
+    world->collide(enemy->position());
     ship->update(this);
     for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
       it->update(this);
