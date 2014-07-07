@@ -1,16 +1,22 @@
 #ifndef _SHIP_H_
 #define _SHIP_H_
 
-#include "moving_object.h"
+#include <TFT.h>
+#include <Esplora.h>
+
 #include "vec2.h"
 #include "color.h"
+#include "constants.h"
+#include "moving_object.h"
+
+class Env;
 
 class Ship: public MovingObject {
   public:
     Ship(Vec2 position, Color color, Vec2 velocity = Vec2(0, 0)): MovingObject(position, color, velocity) {
     }
 
-    void render() {
+    void render(Env *env) {
       int x = position().x();
       int y = position().y();
       EsploraTFT.rect(x, y, 2, 3);
@@ -20,7 +26,7 @@ class Ship: public MovingObject {
     }
 
 
-    void update() {
+    void update(Env *env) {
       Vec2 accel(map(Esplora.readJoystickX(), 512, -512, -2, 2),
                  map(Esplora.readJoystickY(), -512, 512, -2, 2));
 
@@ -39,14 +45,14 @@ class Ship: public MovingObject {
       if (position().x() < 0)
         mutable_position()->set_x(0);
 
-      if (position().x() > myWidth)
-        mutable_position()->set_x(myWidth);
+      if (position().x() > constants->myWidth)
+        mutable_position()->set_x(constants->myWidth);
 
       if (position().y() < 0)
         mutable_position()->set_y(0);
 
-      if (position().y() > myHeight)
-        mutable_position()->set_y(myHeight);
+      if (position().y() > constants->myHeight)
+        mutable_position()->set_y(constants->myHeight);
     }
 };
 
