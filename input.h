@@ -14,16 +14,9 @@ const unsigned char SWITCH_1       = 1;
 
 class Joystick {
  public:
-  int readButton(unsigned char s) {
-    return 0;
-  }
-  int readJoystickX() {
-    return 0;
-  }
-
-  int readJoystickY() {
-    return 0;
-  }
+  virtual bool readButton(unsigned char s) = 0;
+  virtual int readJoystickX() = 0;
+  virtual int readJoystickY() = 0;
 };
 
 extern Joystick* joystick;

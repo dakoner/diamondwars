@@ -6,8 +6,8 @@
 #include "input.h"
 
 class ArduinoJoystick: public Joystick {
-  int readButton(int s) {
-    return Esplora.readButton(s);
+  boolean readButton(unsigned char channel) {
+    return Esplora.readButton(channel);
   }
   int readJoystickX() {
     return Esplora.readJoystickX();
