@@ -4,13 +4,14 @@
 #include "moving_object.h"
 #include "color.h"
 #include "vec2.h"
-#include <Arduino.h>
+#include "gfx.h"
+#include "random.h"
 
 class Env;
 
 class Enemy: public MovingObject {
  public:
- Enemy(Vec2 position, Color color, Vec2 velocity = Vec2(random(constants->myWidth), random(constants->myHeight))): MovingObject(position, color, velocity) {
+  Enemy(Vec2 position, Color color, Vec2 velocity = Vec2(random(gfx->width()), random(gfx->height()))): MovingObject(position, color, velocity) {
   }
 
   void render(Env *env);
@@ -22,13 +23,13 @@ class Enemy: public MovingObject {
     if (position().x() < 0)
       mutable_velocity()->set_x(-velocity().x());
 
-    if (position().x() > constants->myWidth)
+    if (position().x() > gfx->width())
       mutable_velocity()->set_x(-velocity().x());
 
     if (position().y() < 0)
       mutable_velocity()->set_y(-velocity().y());
 
-    if (position().y() > constants->myHeight)
+    if (position().y() > gfx->height())
       mutable_velocity()->set_y(-velocity().y());
   }
 

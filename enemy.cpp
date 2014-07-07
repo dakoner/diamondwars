@@ -4,7 +4,7 @@
 void Enemy::render(Env *env) {
   int x = position().x();
   int y = position().y();
-  EsploraTFT.rect(x, y, 5, 5);
+  gfx->rect(x, y, 5, 5);
 
   Vec2 q;
   for (int i = 0; i < env->world->stalagtites().size() - 1; ++i) {

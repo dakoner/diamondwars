@@ -5,6 +5,7 @@
 #include "vec2.h"
 #include "color.h"
 #include "constants.h"
+#include "gfx.h"
 
 class Bullet: public MovingObject, public Killable {
   public:
@@ -14,13 +15,13 @@ class Bullet: public MovingObject, public Killable {
     void render(Env *env) {
       int x = position().x();
       int y = position().y();
-      EsploraTFT.rect(x - 1, y - 1, 2, 2);
+      gfx->rect(x - 1, y - 1, 2, 2);
     }
 
     void update(Env *env) {
       mutable_position()->set_x(position().x() + velocity().x());
 
-      if (position().x() > constants->myWidth) {
+      if (position().x() > gfx->width()) {
         kill();
         // mark dead, remove from container
       }

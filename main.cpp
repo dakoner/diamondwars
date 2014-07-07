@@ -1,18 +1,17 @@
 #ifndef ARDUINO
 #include "constants.h"
 #include "env.h"
+#include "logging_gfx.h"
+#include "input.h"
 
-extern long random(long max) {
-  return 42;
-}
-
-extern long random(long min, long max) {
-  return 42;
-}
 
 int main(void) {
-  constants = new Constants(256, 256);
+  constants = new Constants();
+  gfx = new LoggingGFX();
   env = new Env();
-  env->loop();
+  joystick = new Joystick();
+  while(true) {
+    env->loop();
+  }
  }
  #endif

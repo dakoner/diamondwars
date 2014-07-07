@@ -3,7 +3,8 @@
 
 #include <iterator>
 #include <vector>
-#include <Arduino.h>
+#include "gfx.h"
+
 
 #include "vec2.h"
 #include "color.h"
@@ -12,13 +13,14 @@
 #include "world.h"
 #include "star.h"
 #include "bullet.h"
+#include "input.h"
 
 class Env {
  public:
   Env() {
-    ship = new Ship(Vec2(constants->myWidth / 2, constants->myHeight / 2), constants->shipColor);
+    ship = new Ship(Vec2(gfx->width() / 2, gfx->height() / 2), constants->shipColor);
   
-    enemy = new Enemy(Vec2(random(constants->myWidth), random(constants->myHeight)), constants->enemyColor, Vec2(4, 4));
+    enemy = new Enemy(Vec2(random(gfx->width()), random(gfx->height())), constants->enemyColor, Vec2(4, 4));
   
     world = new World(Vec2(0, 0), constants->worldColor);
   
@@ -26,7 +28,7 @@ class Env {
     stars.reserve(constants->numStars);
   
     for (int i = 0; i < constants->numStars; ++i) {
-      stars.push_back(Star(Vec2(random(constants->myWidth), random(constants->myHeight)), constants->starColor));
+      stars.push_back(Star(Vec2(random(gfx->width()), random(gfx->height())), constants->starColor));
     }
   }
 
@@ -70,7 +72,7 @@ class Env {
   void shootBullet() {
 
     if (bullets.size() < 20) {
-      int buttonState = Esplora.readButton(SWITCH_1);  // Esplora.readButton replaces digitalRead()
+      int buttonState = joystick->readButton(SWITCH_1);  // Esplora.readButton replaces digitalRead()
       if (buttonState == LOW) {
       	Bullet b(Vec2(ship->position().x() + 6, ship->position().y()), constants->bulletColor);
       	bullets.push_back(b);

@@ -1,32 +1,9 @@
 #ifndef _COLLISION_H_
 #define _COLLISION_H_
 
-Vec2 closest_point_on_seg(Vec2 seg_a, Vec2 seg_b, Vec2 circ_pos) {
-  Vec2 seg_v = seg_b - seg_a;
-  Vec2 pt_v = circ_pos - seg_a;
-  if (seg_v.length() <= 0) return Vec2(0, 0);
-  Vec2 seg_v_unit = seg_v;
-  seg_v_unit.normalize();
-  float proj = pt_v.dot(seg_v_unit);
-  if (proj <= 0) return seg_a;
-  if (proj >= seg_v.length()) return seg_b;
-  Vec2 proj_v = seg_v_unit * proj;
-  Vec2 closest = proj_v + seg_a;
-  return closest;
-}
+Vec2 closest_point_on_seg(Vec2 seg_a, Vec2 seg_b, Vec2 circ_pos);
 
-Vec2 segment_circle(Vec2 seg_a, Vec2 seg_b, Vec2 circ_pos) {
-  int circ_rad = 2;
-  Vec2 closest = closest_point_on_seg(seg_a, seg_b, circ_pos);
-  Vec2 dist_v = circ_pos - closest;
-  if (dist_v.length() > circ_rad) return Vec2(0, 0);
-  if (dist_v.length() <= 0) return Vec2(0, 0);
-  Vec2 offset = dist_v;
-  offset.normalize();
-  offset = offset * (circ_rad - dist_v.length());
-  return offset;
-}
-
+Vec2 segment_circle(Vec2 seg_a, Vec2 seg_b, Vec2 circ_pos);
 
 #endif
 

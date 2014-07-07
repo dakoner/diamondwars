@@ -5,8 +5,7 @@
 class Constants {
   public:
 
- Constants(int width, int height) :
-  myWidth(width), myHeight(height), 
+ Constants() :
   numStars(30), starSpeed(4), 
   backgroundColor(0, 0, 0),
   shipColor(255, 0, 0),
@@ -15,8 +14,6 @@ class Constants {
   starColor(127, 127, 0),
   bulletColor(0, 255, 0) {
 }
-  int myWidth;
-  int myHeight;
 
   int numStars;
   int starSpeed;
