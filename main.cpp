@@ -2,13 +2,13 @@
 #include <iostream>
 #include "constants.h"
 #include "env.h"
-#include "dummy_gfx.h"
+#include "sdl_gfx.h"
 #include "dummy_input.h"
 
 
 int main(void) {
   constants = new Constants();
-  gfx = new DummyGFX();
+  gfx = new SDLGFX();
   env = new Env();
   joystick = new DummyJoystick();
   int i = 0;
