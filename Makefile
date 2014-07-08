@@ -11,11 +11,7 @@ main: $(OBJECTS)
 
 .depend: $(SOURCES)
 	rm -f .depend
-# For each source, let the compiler run the preprocessor with the -M and -MM
-# options, which causes it to output a dependency suitable for make.
-	for source in $(SOURCES) ; do \
-	  $(CC) $(CPPFLAGS) -M -MM $$source | tee -a .depend ; \
-	done
+	$(CC) $(CPPFLAGS) -M -MM $(SOURCES) > .depend ; \
 
 clean:
 	rm -f *.o main

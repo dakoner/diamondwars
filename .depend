@@ -1,6 +1,6 @@
 main.o: main.cpp constants.h color.h env.h gfx.h vec2.h ship.h \
  moving_object.h object.h input.h enemy.h random.h world.h collision.h \
- star.h bullet.h killable.h sdl_gfx.h dummy_input.h
+ star.h bullet.h killable.h sdl_gfx.h sdl_input.h
 enemy.o: enemy.cpp enemy.h moving_object.h object.h vec2.h color.h \
  constants.h gfx.h random.h env.h ship.h input.h world.h collision.h \
  star.h bullet.h killable.h

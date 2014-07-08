@@ -15,7 +15,6 @@ class SDLJoystick: public Joystick {
     int x;
     SDL_GetMouseState(&x, NULL);
     x= int((x-gfx->width()/2) / float(gfx->width()) * 25);
-    std::cout << "x: " << x << std::endl;
     return x;
   }
 
@@ -26,7 +25,6 @@ class SDLJoystick: public Joystick {
 
     
     y =  int((y-gfx->width()/2) / float(gfx->height()) * 25);
-    std::cout << "y: " << y << std::endl;
     return y;
   }
 };

@@ -20,7 +20,6 @@ class Bullet: public MovingObject, public Killable {
 
     void update(Env *env) {
       mutable_position()->set_x(position().x() + velocity().x());
-
       if (position().x() > gfx->width()) {
         kill();
         // mark dead, remove from container

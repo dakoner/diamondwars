@@ -48,7 +48,7 @@ class SDLGFX: public GFX {
 
   void draw() {
     SDL_RenderPresent( ren );
-    SDL_Delay(10);
+    SDL_Delay(25);
   }		 
 
   void stroke(char r, char g, char b) {

@@ -3,14 +3,14 @@
 #include "constants.h"
 #include "env.h"
 #include "sdl_gfx.h"
-#include "dummy_input.h"
+#include "sdl_input.h"
 
 
 int main(void) {
   constants = new Constants();
   gfx = new SDLGFX();
   env = new Env();
-  joystick = new DummyJoystick();
+  joystick = new SDLJoystick();
   int i = 0;
   while(true) {
     env->loop();

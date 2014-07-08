@@ -1,6 +1,7 @@
 #ifndef _SHIP_H_
 #define _SHIP_H_
 
+#include <iostream>
 #include "vec2.h"
 #include "color.h"
 #include "constants.h"
@@ -30,14 +31,16 @@ class Ship: public MovingObject {
 
 
     void update(Env *env) {
-      #ifdef ARDUINO
-      Vec2 accel(map(joystick->readJoystickX(), 512, -512, -2, 2),
-                 map(joystick->readJoystickY(), -512, 512, -2, 2));
-      #else
-      Vec2 accel(0, 0);
-      #endif
+      Vec2 accel(joystick->readJoystickX(),
+                 joystick->readJoystickY());
       mutable_velocity()->set_x(velocity().x() + accel.x());
       mutable_velocity()->set_y(velocity().y() + accel.y());
+
+      if (velocity().x() < -3)
+        mutable_velocity()->set_x(-3);
+
+      if (velocity().y() < -3)
+        mutable_velocity()->set_y(-3);
 
       if (velocity().x() > 3)
         mutable_velocity()->set_x(3);
@@ -51,14 +54,14 @@ class Ship: public MovingObject {
       if (position().x() < 0)
         mutable_position()->set_x(0);
 
-      if (position().x() > gfx->width())
-        mutable_position()->set_x(gfx->width());
+      if (position().x() > gfx->width()-5)
+        mutable_position()->set_x(gfx->width()-5);
 
       if (position().y() < 0)
         mutable_position()->set_y(0);
 
-      if (position().y() > gfx->height())
-        mutable_position()->set_y(gfx->height());
+      if (position().y() > gfx->height()-5)
+        mutable_position()->set_y(gfx->height()-5);
     }
 };
 

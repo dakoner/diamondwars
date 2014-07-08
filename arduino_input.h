@@ -10,11 +10,11 @@ class ArduinoJoystick: public Joystick {
     return Esplora.readButton(channel);
   }
   int readJoystickX() {
-    return Esplora.readJoystickX();
+    return map(Esplora.readJoystickX(), 512, -512, -2, 2);
   }
 
   int readJoystickY() {
-    return Esplora.readJoystickY();
+    return map(Esplora.readJoystickX(), -512, 512, -2, 2);
   }
 };
 
