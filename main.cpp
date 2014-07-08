@@ -13,7 +13,6 @@ int main(void) {
   joystick = new DummyJoystick();
   int i = 0;
   while(true) {
-    std::cout << "Step: " << i << std::endl;
     env->loop();
     i++;
   }

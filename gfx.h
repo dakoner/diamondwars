@@ -8,6 +8,8 @@ class GFX {
   public:
  GFX(int width, int height): _width(width), _height(height) {
   }
+  virtual void clear() = 0;
+  virtual void draw() = 0;
 
   virtual void stroke(char r, char g, char b) = 0;
   virtual void fill(char r, char g, char b) = 0;

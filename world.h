@@ -52,7 +52,7 @@ class World: public MovingObject {
 	Serial.print(offset.x());
 	Serial.println(offset.y());
 	#else
-	std::cout << "Collision. offset: " << offset.x() << " " << offset.y() << std::endl;
+	/* std::cout << "Collision. offset: " << offset.x() << " " << offset.y() << std::endl; */
 	#endif
       }
     }

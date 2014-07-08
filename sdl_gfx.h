@@ -27,6 +27,9 @@ class SDLGFX: public GFX {
       std::cerr << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
       exit(1);
     }
+  }
+
+  void clear() {
     SDL_Surface *screenSurface = SDL_GetWindowSurface( win );
     if (screenSurface == NULL) {
       std::cerr << "SDL_GetWindowSurface Error: " << SDL_GetError() << std::endl;
@@ -34,14 +37,19 @@ class SDLGFX: public GFX {
     }
 
     //Fill the surface white
-    SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
+    SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format,
+						   constants->backgroundColor.r(), 
+						   constants->backgroundColor.g(), 
+						   constants->backgroundColor.b())) ;
 
     //Update the surface
     SDL_UpdateWindowSurface( win );
-
-    //Wait two seconds
-    SDL_Delay( 2000 );
   }
+
+  void draw() {
+    SDL_RenderPresent( ren );
+    SDL_Delay(10);
+  }		 
 
   void stroke(char r, char g, char b) {
     strokeR = r;
@@ -55,10 +63,21 @@ class SDLGFX: public GFX {
   }
 
   void point(int x, int y) {
+    SDL_SetRenderDrawColor(ren, strokeR, strokeG, strokeB, 255);
+    SDL_RenderDrawPoint(ren, x, y);
   }
   void rect(int x1, int y1, int x2, int y2) {
+    SDL_SetRenderDrawColor(ren, strokeR, strokeG, strokeB, 255);
+    SDL_Rect r;
+    r.x = x1;
+    r.y = y1;
+    r.w = x2;
+    r.h = y2;
+    SDL_RenderDrawRect(ren, &r);
   }
   void line(int x1, int y1, int x2, int y2) {
+    SDL_SetRenderDrawColor(ren, strokeR, strokeG, strokeB, 255);
+    SDL_RenderDrawLine(ren, x1, y1, x2, y2);
   }
 
  private:

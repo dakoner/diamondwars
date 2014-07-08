@@ -33,6 +33,9 @@ class Env {
   }
 
   void loop() {
+    gfx->clear();
+
+#ifdef ARDUINO
     for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) {
       it->erase(this);
     }
@@ -48,10 +51,9 @@ class Env {
       if(it->dead()) bullets.erase(it);
       else it++;
     }
-  
+#endif
     shootBullet();
     enemy->update(this);
-    std::cout << "enemy: " << enemy->position().x() << " " << enemy->position().y() << std::endl;
     world->collide(enemy->position());
     ship->update(this);
     for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
@@ -69,6 +71,8 @@ class Env {
     for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) {
       it->draw(this);
     }
+    
+    gfx->draw();
   }
 
   void shootBullet() {
