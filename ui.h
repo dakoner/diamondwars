@@ -27,10 +27,6 @@ class UI {
   virtual void rect(int x1, int y1, int x2, int y2) = 0;
   virtual void line(int x1, int y1, int x2, int y2) = 0;
 
-  virtual bool readButton(unsigned char s) = 0;
-  virtual float readJoystickX() = 0;
-  virtual float readJoystickY() = 0;
-
   virtual int width() { return _width; }
   virtual int height() { return _height; }
 

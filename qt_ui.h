@@ -1,9 +1,11 @@
 #ifndef _QT_UI_H_
 #define _QT_UI_H_
+#include "ui.h"
 
 #include <Qt/qapplication.h>
 #include <Qt/q3canvas.h>
 #include <Qt3Support/Q3CanvasItem>
+
 
 #include "constants.h"
 
@@ -23,6 +25,10 @@ class QtUI: public UI {
     cv->setHScrollBarMode(Q3ScrollView::AlwaysOff);
     cv->setVScrollBarMode(Q3ScrollView::AlwaysOff);
     cv->show();
+  }
+
+  Q3CanvasView *GetCV() { 
+    return cv;
   }
 
   void clear() {
@@ -67,22 +73,6 @@ class QtUI: public UI {
     l->setBrush( Qt::red );
     l->show();
   }
-
-  bool readButton(unsigned char channel) {
-    return !(QApplication::mouseButtons() & Qt::LeftButton);
-  }
-  float readJoystickX() {
-    QPoint point = QCursor::pos();
-    QPoint mapped = cv->mapFromGlobal(QCursor::pos());
-    return (mapped.x() - ui->width()/2) / float(ui->width())/64.;
-  }
-
-  float readJoystickY() {
-    QPoint point = QCursor::pos();
-    QPoint mapped = cv->mapFromGlobal(QCursor::pos());
-    return (mapped.y() - ui->height()/2) / float(ui->height())/64.;
-  }
-
 
  private:
   QApplication *a;

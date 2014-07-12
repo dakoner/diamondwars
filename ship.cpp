@@ -1,4 +1,5 @@
 #include "ship.h"
+#include "joystick.h"
 
 Ship::Ship(Vec2 position, Color color, Vec2 velocity): MovingObject(position, color, velocity) {
 }
@@ -14,8 +15,8 @@ void Ship::render(Env *env) {
 
 
 void Ship::update(Env *env) {
-  Vec2 accel(ui->readJoystickX(),
-	     ui->readJoystickY());
+  Vec2 accel(joystick->readJoystickX(),
+	     joystick->readJoystickY());
 
   if (velocity().x() > 0.01) {
     mutable_velocity()->set_x(0.01);

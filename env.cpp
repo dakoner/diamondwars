@@ -1,4 +1,5 @@
 #include "env.h"
+#include "joystick.h"
 
 Env* env = NULL;
 
@@ -24,26 +25,26 @@ Env::Env() {
 void Env::loop() {
   ui->clear();
 
-  // #ifdef ARDUINO
-  //   for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) {
-  //     it->erase(this);
-  //   }
-  //   world->erase(this);
-  //   enemy->erase(this);
-  // ship->erase(this);
-  // for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
-  //   it->erase(this);
-  // }
-  // #endif
+  #ifdef ARDUINO
+    for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) {
+      it->erase(this);
+    }
+    world->erase(this);
+    enemy->erase(this);
+  ship->erase(this);
+  for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
+    it->erase(this);
+  }
+  #endif
   
-  // for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end();) {
-  //   it->update(this);
-  //   if(it->dead()) bullets.erase(it); 
-  //   else it++;
-  // }
-  // shootBullet();
+  for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end();) {
+    it->update(this);
+    if(it->dead()) bullets.erase(it); 
+    else it++;
+  }
+  shootBullet();
   world->update(this);
-  // enemy->update(this);
+  enemy->update(this);
 
   ship->update(this);
   for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
@@ -52,14 +53,14 @@ void Env::loop() {
 
 
   ship->draw(this);
-  // enemy->draw(this);
+  enemy->draw(this);
   world->draw(this);
   for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
     it->draw(this);
   }
-  // for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) {
-  //   it->draw(this);
-  // }
+  for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) {
+    it->draw(this);
+  }
     
   ui->draw();
 }
@@ -67,7 +68,7 @@ void Env::loop() {
 void Env::shootBullet() {
 
   if (bullets.size() < 20) {
-    int buttonState = ui->readButton(SWITCH_1);
+    int buttonState = joystick->readButton(SWITCH_1);
     if (buttonState == PRESSED) {
       Bullet *b = new Bullet(Vec2(ship->position().x() + 6, ship->position().y()), constants->bulletColor);
       bullets.push_back(*b);
