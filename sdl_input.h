@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "SDL2/SDL.h"
-#include "input.h"
+
 
 class SDLJoystick: public Joystick {
   bool readButton(unsigned char channel) {
@@ -14,7 +14,7 @@ class SDLJoystick: public Joystick {
     SDL_PumpEvents();
     int x;
     SDL_GetMouseState(&x, NULL);
-    x= int((x-gfx->width()/2) / float(gfx->width()) * 25);
+    x= int((x-ui->width()/2) / float(ui->width()) * 25);
     return x;
   }
 
@@ -24,7 +24,7 @@ class SDLJoystick: public Joystick {
     SDL_GetMouseState(NULL, &y);
 
     
-    y =  int((y-gfx->width()/2) / float(gfx->height()) * 25);
+    y =  int((y-ui->width()/2) / float(ui->height()) * 25);
     return y;
   }
 };

@@ -1,16 +1,16 @@
-#ifndef _ARDUINO_GFX_H_
-#define _ARDUINO_GFX_H_
+#ifndef _ARDUINO_UI_H_
+#define _ARDUINO_UI_H_
 
 #include <Esplora.h>
 #include <TFT.h>
 #include <SPI.h>
 
 #include "constants.h"
-#include "gfx.h"
+#include "ui.h"
 
-class ArduinoGFX: public GFX {
+class ArduinoUI: public UI {
   public:
- ArduinoGFX(): GFX(EsploraTFT.width(), EsploraTFT.height()) {
+ ArduinoUI(): UI(EsploraTFT.width(), EsploraTFT.height()) {
     EsploraTFT.begin();
     EsploraTFT.background(constants->backgroundColor.r(), constants->backgroundColor.g(), constants->backgroundColor.b());    
   }

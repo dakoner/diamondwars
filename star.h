@@ -8,7 +8,7 @@ class Star: public MovingObject {
     void render(Env *env) {
       int x = position().x();
       int y = position().y();
-      gfx->point(x, y);
+      ui->point(x, y);
 
     }
     void update(Env *env) {
@@ -16,7 +16,7 @@ class Star: public MovingObject {
       mutable_position()->set_y(position().y() + velocity().y());
 
       if (position().x() < 0)
-        mutable_position()->set_x(gfx->width());
+        mutable_position()->set_x(ui->width());
     }
 };
 

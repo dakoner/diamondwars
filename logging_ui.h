@@ -1,13 +1,13 @@
-#ifndef _LOGGING_GFX_H_
-#define _LOGGING_GFX_H_
+#ifndef _LOGGING_UI_H_
+#define _LOGGING_UI_H_
 
 #include <iostream>
 #include "constants.h"
 
 
-class LoggingGFX: public GFX {
+class LoggingUI: public UI {
  public:
- LoggingGFX(): GFX(256, 256) {
+ LoggingUI(): UI(256, 256) {
   }
 
   void stroke(char r, char g, char b) {

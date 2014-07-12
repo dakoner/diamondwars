@@ -4,9 +4,9 @@ Env* env = NULL;
 
 
 Env::Env() {
-  ship = new Ship(Vec2(gfx->width() / 2, gfx->height() / 2), constants->shipColor);
+  ship = new Ship(Vec2(ui->width() / 2, ui->height() / 2), constants->shipColor);
   
-  enemy = new Enemy(Vec2(random(gfx->width()), random(gfx->height())), constants->enemyColor, Vec2(3, 2));
+  enemy = new Enemy(Vec2(120,60), constants->enemyColor, Vec2(0.1, 0.1));
   
   world = new World(Vec2(0, 0), constants->worldColor);
   
@@ -14,58 +14,58 @@ Env::Env() {
   stars.reserve(constants->numStars);
   
   for (int i = 0; i < constants->numStars; ++i) {
-    stars.push_back(Star(Vec2(random(gfx->width()), random(gfx->height())), constants->starColor));
+    stars.push_back(Star(Vec2(random(ui->width()), random(ui->height())), constants->starColor));
   }
 }
 
 void Env::loop() {
-  gfx->clear();
+  ui->clear();
 
-#ifdef ARDUINO
-  for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) {
-    it->erase(this);
-  }
-  enemy->erase(this);
-  ship->erase(this);
-  for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
-    it->erase(this);
-  }
-  world->erase(this);
-#endif
+// #ifdef ARDUINO
+//   for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) {
+//     it->erase(this);
+//   }
+//   world->erase(this);
+//   enemy->erase(this);
+  // ship->erase(this);
+  // for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
+  //   it->erase(this);
+  // }
+// #endif
   
-  for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end();) {
-    it->update(this);
-    if(it->dead()) bullets.erase(it); 
-    else it++;
-  }
-  shootBullet();
-  enemy->update(this);
-  world->collide(enemy->position());
+  // for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end();) {
+  //   it->update(this);
+  //   if(it->dead()) bullets.erase(it); 
+  //   else it++;
+  // }
+  // shootBullet();
+  // world->update(this);
+  // enemy->update(this);
+
   ship->update(this);
-  for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
-    it->update(this);
-  }
-  world->update(this);
+  // for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
+  //   it->update(this);
+  // }
 
 
-  world->draw(this);
-  for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
-    it->draw(this);
-  }
   ship->draw(this);
-  enemy->draw(this);
-  for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) {
-    it->draw(this);
-  }
+  // enemy->draw(this);
+  // world->draw(this);
+  // for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
+  //   it->draw(this);
+  // }
+  // for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) {
+  //   it->draw(this);
+  // }
     
-  gfx->draw();
+  ui->draw();
 }
 
 void Env::shootBullet() {
 
   if (bullets.size() < 20) {
-    int buttonState = joystick->readButton(SWITCH_1);
-    if (buttonState == LOW) {
+    int buttonState = ui->readButton(SWITCH_1);
+    if (buttonState == PRESSED) {
       Bullet *b = new Bullet(Vec2(ship->position().x() + 6, ship->position().y()), constants->bulletColor);
       bullets.push_back(*b);
     }

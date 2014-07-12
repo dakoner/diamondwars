@@ -1,16 +1,16 @@
-#ifndef _SDL_GFX_H_
-#define _SDL_GFX_H_
+#ifndef _SDL_UI_H_
+#define _SDL_UI_H_
 #include <iostream>
 
 #include "SDL2/SDL.h"
 #include "SDL2/SDL_video.h"
 
 #include "constants.h"
-#include "gfx.h"
+#include "ui.h"
 
-class SDLGFX: public GFX {
+class SDLUI: public UI {
   public:
-  SDLGFX(): GFX(160, 128) {
+  SDLUI(): UI(160, 128) {
     if (SDL_Init(SDL_INIT_VIDEO) != 0){
       std::cerr << "SDL_Init Error: " << SDL_GetError() << std::endl;
       exit(1);
@@ -22,7 +22,8 @@ class SDLGFX: public GFX {
       exit(1);
 
     }
-    ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE);
+    /* ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_SOFTWARE); */
+    ren = SDL_CreateRenderer(win, -1, 0);
     if (ren == NULL) {
       std::cerr << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
       exit(1);

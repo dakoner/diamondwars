@@ -3,7 +3,7 @@
 
 #include <Esplora.h>
 
-#include "input.h"
+
 
 class ArduinoJoystick: public Joystick {
   boolean readButton(unsigned char channel) {

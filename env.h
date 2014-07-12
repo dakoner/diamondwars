@@ -3,7 +3,7 @@
 
 #include <iterator>
 #include <vector>
-#include "gfx.h"
+#include "ui.h"
 
 
 #include "vec2.h"
@@ -13,18 +13,20 @@
 #include "world.h"
 #include "star.h"
 #include "bullet.h"
-#include "input.h"
+
 
 class Env {
  public:
   Env();
   void shootBullet();
   void loop();
+  Enemy* getEnemy() { return enemy; }
+  Ship* getShip() { return ship; }
 
-  Ship *ship;
-  Enemy *enemy;
+  Ship* ship;
+  Enemy* enemy;
   std::vector<Star> stars;
-  World *world;
+  World* world;
   std::vector<Bullet> bullets;
 };
 

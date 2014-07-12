@@ -2,15 +2,13 @@
 #include <iostream>
 #include "constants.h"
 #include "env.h"
-#include "sdl_gfx.h"
-#include "sdl_input.h"
+#include "qt_ui.h"
 
 
 int main(void) {
   constants = new Constants();
-  gfx = new SDLGFX();
+  ui = new QtUI();
   env = new Env();
-  joystick = new SDLJoystick();
   int i = 0;
   while(true) {
     env->loop();

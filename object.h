@@ -4,7 +4,7 @@
 #include "vec2.h"
 #include "color.h"
 #include "constants.h"
-#include "gfx.h"
+#include "ui.h"
 
 class Env;
 
@@ -18,14 +18,14 @@ class Object {
   virtual void update(Env *env) = 0;
 
   void erase(Env *env) {
-    gfx->stroke(constants->backgroundColor.r(), constants->backgroundColor.g(), constants->backgroundColor.b());
-    gfx->fill(constants->backgroundColor.r(), constants->backgroundColor.g(), constants->backgroundColor.b());
+    ui->stroke(constants->backgroundColor.r(), constants->backgroundColor.g(), constants->backgroundColor.b());
+    ui->fill(constants->backgroundColor.r(), constants->backgroundColor.g(), constants->backgroundColor.b());
     render(env);
   }
 
   void draw(Env *env) {
-    gfx->stroke(_color.r(), _color.g(), _color.b());
-    gfx->fill(_color.r(), _color.g(), _color.b());
+    ui->stroke(_color.r(), _color.g(), _color.b());
+    ui->fill(_color.r(), _color.g(), _color.b());
     render(env);
   }
 

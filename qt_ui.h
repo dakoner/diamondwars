@@ -1,5 +1,5 @@
-#ifndef _QT_GFX_H_
-#define _QT_GFX_H_
+#ifndef _QT_UI_H_
+#define _QT_UI_H_
 
 #include <Qt/qapplication.h>
 #include <Qt/q3canvas.h>
@@ -9,9 +9,9 @@
 
 #include <unistd.h>
 
-class QtGFX: public GFX {
+class QtUI: public UI {
  public:
- QtGFX(): GFX(160, 128) {
+ QtUI(): UI(160, 128) {
     int argc = 1;
     char *argv[1];
     argv[0] = "qtapp";
@@ -26,10 +26,9 @@ class QtGFX: public GFX {
   }
 
   void draw() {
-    std::cout << "draw" << std::endl;
     c->update();
     a->processEvents();
-    usleep(25000);
+    /* usleep(500); */
     Q3CanvasItemList items = c->allItems();
     for (QLinkedList<Q3CanvasItem*>::iterator item = items.begin(); item != items.end(); ++item) {
       delete *item;
@@ -65,6 +64,24 @@ class QtGFX: public GFX {
     l->setBrush( Qt::red );
     l->show();
   }
+
+  bool readButton(unsigned char channel) {
+    return !(QApplication::mouseButtons() & Qt::LeftButton);
+  }
+  int readJoystickX() {
+    QPoint point = QCursor::pos();
+    QPoint mapped = cv->mapFromGlobal(QCursor::pos());
+    std::cout << "Mapped: " << mapped.x() << mapped.y() << std::endl;
+    return int((mapped.x() - ui->width()/2) / float(ui->width()));
+  }
+
+  int readJoystickY() {
+    QPoint point = QCursor::pos();
+    QPoint mapped = cv->mapFromGlobal(QCursor::pos());
+    std::cout << "Mapped: " << mapped.x() << " " <<  mapped.y() << std::endl;
+     return int((mapped.y() - ui->height()/2) / float(ui->height()));
+  }
+
 
  private:
   QApplication *a;

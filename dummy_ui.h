@@ -1,12 +1,12 @@
-#ifndef _LOGGING_GFX_H_
-#define _LOGGING_GFX_H_
+#ifndef _LOGGING_UI_H_
+#define _LOGGING_UI_H_
 
 #include "constants.h"
 
 
-class DummyGFX: public GFX {
+class DummyUI: public UI {
  public:
- DummyGFX(): GFX(256, 256) {
+ DummyUI(): UI(256, 256) {
   }
 
   void stroke(char r, char g, char b) {

@@ -5,7 +5,7 @@
 #include "vec2.h"
 #include "color.h"
 #include "constants.h"
-#include "gfx.h"
+#include "ui.h"
 
 class Bullet: public MovingObject, public Killable {
   public:
@@ -15,12 +15,12 @@ class Bullet: public MovingObject, public Killable {
     void render(Env *env) {
       int x = position().x();
       int y = position().y();
-      gfx->rect(x - 1, y - 1, 2, 2);
+      ui->rect(x - 1, y - 1, 2, 2);
     }
 
     void update(Env *env) {
       mutable_position()->set_x(position().x() + velocity().x());
-      if (position().x() > gfx->width()) {
+      if (position().x() > ui->width()) {
         kill();
         // mark dead, remove from container
       }
