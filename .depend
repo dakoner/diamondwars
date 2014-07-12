@@ -15,3 +15,6 @@ collision.o: collision.cpp vec2.h
 world.o: world.cpp world.h moving_object.h object.h vec2.h color.h \
  constants.h ui.h enemy.h random.h collision.h env.h ship.h star.h \
  bullet.h killable.h
+ship.o: ship.cpp ship.h vec2.h color.h constants.h moving_object.h \
+ object.h ui.h env.h enemy.h random.h world.h collision.h star.h bullet.h \
+ killable.h

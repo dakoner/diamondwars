@@ -1,11 +1,13 @@
 #include "random.h"
+#include <stdlib.h>
 
 #ifndef ARDUINO
 long random(long max) {
-  return 2;
+  return long(random() / float(RAND_MAX) * max);
 }
 
 long random(long min, long max) {
-  return 2;
+  long delta = max - min;
+  return long(random() / float(RAND_MAX) * delta + min);
 }
 #endif

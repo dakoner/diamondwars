@@ -15,7 +15,7 @@ Vec2 closest_point_on_seg(Vec2 seg_a, Vec2 seg_b, Vec2 circ_pos) {
 }
 
 Vec2 segment_circle(Vec2 seg_a, Vec2 seg_b, Vec2 circ_pos) {
-  int circ_rad = 12;
+  int circ_rad = 5;
   Vec2 closest = closest_point_on_seg(seg_a, seg_b, circ_pos);
   Vec2 dist_v = circ_pos - closest;
   if (dist_v.length() > circ_rad) return Vec2(0, 0);

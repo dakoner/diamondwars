@@ -30,15 +30,10 @@ void Ship::update(Env *env) {
     mutable_velocity()->set_y(-0.01);
   }
 
-  env->getWorld()->mutable_velocity()->set_x(0);
-
-
-  if (position().x() <= ui->width()*1/4.) {
-    env->getWorld()->mutable_velocity()->set_x(-accel.x());
-  }
-
-  if (position().x() >= ui->width()*3/4.) {
-    env->getWorld()->mutable_velocity()->set_x(-accel.x());
+  env->getWorld()->mutable_velocity()->set_x(-accel.x());
+  std::vector<Star>* stars = env->getStars();
+  for (std::vector<Star>::iterator star = stars->begin(); star != stars->end(); ++star) {
+    star->mutable_velocity()->set_x(-accel.x()*2);
   }
 
   if (position().x() <= 0) {
@@ -50,6 +45,7 @@ void Ship::update(Env *env) {
     mutable_position()->set_x(ui->width()-5);
     mutable_velocity()->set_x(-velocity().x());
   }
+
   if (position().y() < 0) {
     mutable_position()->set_y(0);
     mutable_velocity()->set_y(-velocity().y());
@@ -60,9 +56,8 @@ void Ship::update(Env *env) {
     mutable_velocity()->set_y(-velocity().y());
   }
 
-  ;
-  mutable_velocity()->set_x(velocity().x() + accel.x());
+  // mutable_velocity()->set_x(velocity().x() + accel.x());
   mutable_velocity()->set_y(velocity().y() + accel.y());
-  mutable_position()->set_x(position().x() + velocity().x());
+  // mutable_position()->set_x(position().x() + velocity().x());
   mutable_position()->set_y(position().y() + velocity().y());
 }

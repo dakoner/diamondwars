@@ -14,24 +14,27 @@ Env::Env() {
   stars.reserve(constants->numStars);
   
   for (int i = 0; i < constants->numStars; ++i) {
-    stars.push_back(Star(Vec2(random(ui->width()), random(ui->height())), constants->starColor));
+    int x= random(ui->width());
+    int y= random(ui->height());
+    std::cout << "x: " << x << " " << y << std::endl;
+    stars.push_back(Star(Vec2(x, y), constants->starColor));
   }
 }
 
 void Env::loop() {
   ui->clear();
 
-// #ifdef ARDUINO
-//   for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) {
-//     it->erase(this);
-//   }
-//   world->erase(this);
-//   enemy->erase(this);
+  // #ifdef ARDUINO
+  //   for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) {
+  //     it->erase(this);
+  //   }
+  //   world->erase(this);
+  //   enemy->erase(this);
   // ship->erase(this);
   // for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
   //   it->erase(this);
   // }
-// #endif
+  // #endif
   
   // for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end();) {
   //   it->update(this);
@@ -39,21 +42,21 @@ void Env::loop() {
   //   else it++;
   // }
   // shootBullet();
-  // world->update(this);
+  world->update(this);
   // enemy->update(this);
 
   ship->update(this);
-  // for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
-  //   it->update(this);
-  // }
+  for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
+    it->update(this);
+  }
 
 
   ship->draw(this);
   // enemy->draw(this);
-  // world->draw(this);
-  // for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
-  //   it->draw(this);
-  // }
+  world->draw(this);
+  for (std::vector<Star>::iterator it = stars.begin(); it != stars.end(); ++it) {
+    it->draw(this);
+  }
   // for (std::vector<Bullet>::iterator it = bullets.begin(); it != bullets.end(); ++it) {
   //   it->draw(this);
   // }
@@ -71,3 +74,8 @@ void Env::shootBullet() {
     }
   }
 }
+
+Enemy* Env::getEnemy() { return enemy; }
+Ship* Env::getShip() { return ship; }
+World* Env::getWorld() { return world; }
+std::vector<Star>* Env::getStars() { return &stars; }

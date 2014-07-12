@@ -16,13 +16,13 @@
 class World: public MovingObject {
 
  public:
-  World(Vec2 position, Color color, Vec2 velocity = Vec2(-0.05, 0));
+  World(Vec2 position, Color color, Vec2 velocity = Vec2(0, 0));
 
   void render(Env *env);
 
   void update(Env *env);
 
-  void collide(const Vec2& a, const Vec2& b, MovingObject* object);
+  bool collide(const Vec2& a, const Vec2& b, MovingObject* object);
 
   const std::vector<int>& stalagtites();
   const std::vector<int>& stalagmites();

@@ -19,6 +19,9 @@ class QtUI: public UI {
     c = new Q3Canvas( width(), height() );
     c->setBackgroundColor(Qt::black);
     cv = new Q3CanvasView( c );
+    cv->resize(width(), height());
+    cv->setHScrollBarMode(Q3ScrollView::AlwaysOff);
+    cv->setVScrollBarMode(Q3ScrollView::AlwaysOff);
     cv->show();
   }
 
@@ -68,18 +71,16 @@ class QtUI: public UI {
   bool readButton(unsigned char channel) {
     return !(QApplication::mouseButtons() & Qt::LeftButton);
   }
-  int readJoystickX() {
+  float readJoystickX() {
     QPoint point = QCursor::pos();
     QPoint mapped = cv->mapFromGlobal(QCursor::pos());
-    std::cout << "Mapped: " << mapped.x() << mapped.y() << std::endl;
-    return int((mapped.x() - ui->width()/2) / float(ui->width()));
+    return (mapped.x() - ui->width()/2) / float(ui->width())/64.;
   }
 
-  int readJoystickY() {
+  float readJoystickY() {
     QPoint point = QCursor::pos();
     QPoint mapped = cv->mapFromGlobal(QCursor::pos());
-    std::cout << "Mapped: " << mapped.x() << " " <<  mapped.y() << std::endl;
-     return int((mapped.y() - ui->height()/2) / float(ui->height()));
+    return (mapped.y() - ui->height()/2) / float(ui->height())/64.;
   }
 
 

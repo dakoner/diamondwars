@@ -14,14 +14,17 @@
 #include "star.h"
 #include "bullet.h"
 
+class Ship;
 
 class Env {
  public:
   Env();
   void shootBullet();
   void loop();
-  Enemy* getEnemy() { return enemy; }
-  Ship* getShip() { return ship; }
+  Enemy* getEnemy();
+  Ship* getShip();
+  World* getWorld();
+  std::vector<Star>* getStars();
 
   Ship* ship;
   Enemy* enemy;
