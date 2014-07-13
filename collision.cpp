@@ -39,11 +39,11 @@ bool collide(const Vec2& a, const Vec2& b, MovingObject* object) {
   Vec2 offset = segment_circle(a, b, object->size(), object->position());
   if (offset.x() != 0 && offset.y() != 0) {
     object->mutable_velocity()->set_x(
-				      //object->velocity().x() +
-				     offset.x());
+    				       object->velocity().x() 
+    				     +offset.x());
     object->mutable_velocity()->set_y(
-				      //object->velocity().y() +
-				     offset.y());
+    				      object->velocity().y()
+    				      +offset.y());
 
     Vec2 midpt((a+b)*0.5);
     ui->line(midpt.x(), midpt.y(), midpt.x() + offset.x(), midpt.y() + offset.y());

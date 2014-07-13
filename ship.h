@@ -26,6 +26,7 @@ class Ship: public MovingObject {
 
  private:
   int shield;
+  Vec2 accel;
 };
 
 #endif

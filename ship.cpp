@@ -22,10 +22,49 @@ void Ship::render(Env *env) {
 
 
 void Ship::update(Env *env) {
-  // Vec2 accel(0.00, 0.0);
-  Vec2 accel(joystick->readJoystickX(),
-  	     joystick->readJoystickY());
+  Vec2 vj(joystick->readJoystickX(),
+	  joystick->readJoystickY());
+  accel.set_x(vj.x()*0.5);
+  accel.set_y(vj.y()*0.5);
 
+  bool collided = false;
+  const std::vector<std::pair<Vec2, Vec2> >& lines = env->getWorld()->getLines();
+  for (std::vector<std::pair<Vec2, Vec2> >::const_iterator it = lines.begin(); it != lines.end(); ++it) {
+    const Vec2& v = it->first;
+    const Vec2& w = it->second;
+    if (::collide(v, w, this)) {
+      collided = true;
+      decrement_shield();
+    }
+  }
+
+  env->getWorld()->mutable_velocity()->set_x(-velocity().x()*2);
+  std::vector<Star>* stars = env->getStars();
+  for (std::vector<Star>::iterator star = stars->begin(); star != stars->end(); ++star) {
+    star->mutable_velocity()->set_x(-velocity().x());
+  }
+
+  std::vector<Diamond>* diamonds = env->getDiamonds();
+  for (std::vector<Diamond>::iterator diamond = diamonds->begin(); diamond != diamonds->end(); ++diamond) {
+      diamond->mutable_velocity()->set_x(-velocity().x()*2);
+  }
+
+  for (std::vector<Diamond>::iterator diamond = diamonds->begin(); diamond != diamonds->end();) {
+    if (collide(this, &*diamond)) {
+      diamond = diamonds->erase(diamond);
+      if (diamonds->size() == 0)
+	win();
+      else
+	shield++;
+    }
+    else {
+      ++diamond;
+    }
+  }
+
+  if (collide(this, env->getEnemy())) {
+    shield--;
+  }
 
   if (velocity().x() > 0.25) {
     mutable_velocity()->set_x(0.25);
@@ -40,57 +79,45 @@ void Ship::update(Env *env) {
     mutable_velocity()->set_y(-0.25);
   }
 
-  env->getWorld()->mutable_velocity()->set_x(-accel.x()*2);
-  // env->getWorld()->mutable_velocity()->set_x(0.02);
-  std::vector<Star>* stars = env->getStars();
-  for (std::vector<Star>::iterator star = stars->begin(); star != stars->end(); ++star) {
-    star->mutable_velocity()->set_x(-accel.x());
+  if (accel.x() > 0.25) {
+    accel.set_x(0.25);
   }
-  std::vector<Diamond>* diamonds = env->getDiamonds();
-  for (std::vector<Diamond>::iterator diamond = diamonds->begin(); diamond != diamonds->end();) {
-    if (collide(this, &*diamond)) {
-      diamond = diamonds->erase(diamond);
-      if (diamonds->size() == 0)
-	win();
-      else
-	shield++;
-    }
-    else {
-      diamond->mutable_velocity()->set_x(-accel.x()*2);
-      ++diamond;
-    }
+  if (accel.x() < -0.25) {
+    accel.set_x(-0.25);
+  }
+  if (accel.y() > 0.25) {
+    accel.set_y(0.25);
+  }
+  if (accel.y() < -0.25) {
+    accel.set_y(-0.25);
   }
 
-  if (collide(this, env->getEnemy())) {
-    shield--;
-    if (shield == 0) {
-      die();
-    }
-  }
-  if (position().x() <= 0) {
-    mutable_position()->set_x(0);
-    mutable_velocity()->set_x(-velocity().x());
+  if (position().x() <= ui->width()/4.) {
+    mutable_position()->set_x(ui->width()/4.);
   }
 
-  if (position().x() >= ui->width()-5) {
-    mutable_position()->set_x(ui->width()-5);
-    mutable_velocity()->set_x(-velocity().x());
+  if (position().x() >= ui->width()*3/4.) {
+    mutable_position()->set_x(ui->width()*3/4.);
   }
 
   if (position().y() < 0) {
     mutable_position()->set_y(0);
-    mutable_velocity()->set_y(-velocity().y());
   }
 
   if (position().y() > ui->height()-2.5) {
     mutable_position()->set_y(ui->height()-2.5);
-    mutable_velocity()->set_y(-velocity().y());
   }
+
 
   mutable_velocity()->set_x(velocity().x() + accel.x());
   mutable_velocity()->set_y(velocity().y() + accel.y());
   mutable_position()->set_x(position().x() + velocity().x());
   mutable_position()->set_y(position().y() + velocity().y());
+
+  if (shield <= 0) {
+    die();
+  }
+
 }
 
 void Ship::decrement_shield() {

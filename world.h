@@ -23,8 +23,7 @@ class World: public MovingObject {
 
   void update(Env *env);
 
-  bool collide(const Vec2& a, const Vec2& b, MovingObject* object);
-
+  const std::vector<std::pair<Vec2, Vec2> >& getLines();
   const std::vector<int>& stalagtites();
   const std::vector<int>& stalagmites();
 
@@ -34,6 +33,7 @@ class World: public MovingObject {
   // 16 items with width 20
   std::vector<int> _stalagmites;
 
+  std::vector<std::pair<Vec2, Vec2> > _lines;
 };
 
 #endif
