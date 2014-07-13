@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <iterator>
+#include <vector>
 
 #include "ship.h"
 #include "joystick.h"
@@ -128,9 +130,9 @@ void Ship::increment_shield() {
 }
 
 void Ship::die() {
-  std::cout << "You died." << std::endl;
+  // std::cout << "You died." << std::endl;
 }
 
 void Ship::win() {
-  std::cout << "You won!" << std::endl;
+  // std::cout << "You won!" << std::endl;
 }

@@ -1,6 +1,9 @@
 #include "enemy.h"
 #include "env.h"
 
+#include <iterator>
+#include <vector>
+
 const int enemySize = 6;
 
 Enemy::Enemy(Vec2 position, Color color, Vec2 velocity)

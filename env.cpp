@@ -17,14 +17,12 @@ Env::Env() {
   for (int i = 0; i < constants->numStars; ++i) {
     int x= random(ui->width());
     int y= random(ui->height());
-    std::cout << "x: " << x << " " << y << std::endl;
     stars.push_back(Star(Vec2(x, y), constants->starColor));
   }
 
   for (int i = 0; i < constants->numDiamonds; ++i) {
     int x= random(SPACING*NUM_HEIGHTS);
     int y= random(ui->height());
-    std::cout << "x: " << x << " " << y << std::endl;
     diamonds.push_back(Diamond(Vec2(x, y), constants->diamondColor));
   }
 }

@@ -1,3 +1,4 @@
+#ifndef ARDUINO
 #include "qt_joystick.h"
 
 bool QtJoystick::readButton(unsigned char channel) {
@@ -19,3 +20,4 @@ float QtJoystick::readJoystickY() {
 }
 
 
+#endif

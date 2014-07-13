@@ -6,14 +6,14 @@
 
 #include "constants.h"
 #include "env.h"
-#include "arduino_gfx.h"
-#include "arduino_input.h"
+#include "esplora_ui.h"
+#include "esplora_joystick.h"
 
 void setup() {
   constants = new Constants();
-  gfx = new ArduinoGFX();
+  ui = new EsploraUI();
   env = new Env();
-  joystick = new ArduinoJoystick();
+  joystick = new EsploraJoystick();
 }
 
 

@@ -22,3 +22,4 @@ ship.o: ship.cpp ship.h vec2.h color.h constants.h moving_object.h \
 qt_joystick.o: qt_joystick.cpp qt_joystick.h joystick.h qt_ui.h ui.h \
  constants.h color.h
 joystick.o: joystick.cpp joystick.h
+qt_ui.o: qt_ui.cpp qt_ui.h ui.h constants.h color.h

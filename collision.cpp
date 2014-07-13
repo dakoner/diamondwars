@@ -1,4 +1,3 @@
-#include <iostream>
 #include "vec2.h"
 #include "moving_object.h"
 
@@ -48,7 +47,6 @@ bool collide(const Vec2& a, const Vec2& b, MovingObject* object) {
     Vec2 midpt((a+b)*0.5);
     ui->line(midpt.x(), midpt.y(), midpt.x() + offset.x(), midpt.y() + offset.y());
 
-    std::cout << "Collision. offset: " << offset.x() << " " << offset.y() << std::endl;
     return true;
   }
   return false;

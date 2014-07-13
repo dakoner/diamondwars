@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+#include <iterator>
 #include <vector>
 
 #include "moving_object.h"
