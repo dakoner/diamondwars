@@ -28,6 +28,4 @@ class Ship: public MovingObject {
   int shield;
 };
 
-extern bool shipCollided;
-
 #endif
