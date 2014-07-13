@@ -1,4 +1,6 @@
+#include <iostream>
 #include "vec2.h"
+#include "moving_object.h"
 
 Vec2 closest_point_on_seg(Vec2 seg_a, Vec2 seg_b, Vec2 circ_pos) {
   Vec2 seg_v = seg_b - seg_a;
@@ -14,8 +16,7 @@ Vec2 closest_point_on_seg(Vec2 seg_a, Vec2 seg_b, Vec2 circ_pos) {
   return closest;
 }
 
-Vec2 segment_circle(Vec2 seg_a, Vec2 seg_b, Vec2 circ_pos) {
-  int circ_rad = 5;
+Vec2 segment_circle(Vec2 seg_a, Vec2 seg_b, float circ_rad, Vec2 circ_pos) {
   Vec2 closest = closest_point_on_seg(seg_a, seg_b, circ_pos);
   Vec2 dist_v = circ_pos - closest;
   if (dist_v.length() > circ_rad) return Vec2(0, 0);
@@ -25,6 +26,34 @@ Vec2 segment_circle(Vec2 seg_a, Vec2 seg_b, Vec2 circ_pos) {
   offset = offset * (circ_rad - dist_v.length());
   return offset;
 }
+
+// TODO(dek): compute offset from repulsion
+bool collide(MovingObject* a, MovingObject* b) {
+  Vec2 dist_v = a->position() - b->position();
+  if (dist_v.length() < (a->size() + b->size())) return true;
+  return false;
+}
+
+
+bool collide(const Vec2& a, const Vec2& b, MovingObject* object) {
+  Vec2 offset = segment_circle(a, b, object->size(), object->position());
+  if (offset.x() != 0 && offset.y() != 0) {
+    object->mutable_velocity()->set_x(
+				      //object->velocity().x() +
+				     offset.x());
+    object->mutable_velocity()->set_y(
+				      //object->velocity().y() +
+				     offset.y());
+
+    Vec2 midpt((a+b)*0.5);
+    ui->line(midpt.x(), midpt.y(), midpt.x() + offset.x(), midpt.y() + offset.y());
+
+    std::cout << "Collision. offset: " << offset.x() << " " << offset.y() << std::endl;
+    return true;
+  }
+  return false;
+}
+
 
 // Vec2 q;
 // for (int i = 0; i < stalagtites.size() - 1; ++i) {

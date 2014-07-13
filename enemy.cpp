@@ -1,6 +1,12 @@
 #include "enemy.h"
 #include "env.h"
 
+const int enemySize = 6;
+
+Enemy::Enemy(Vec2 position, Color color, Vec2 velocity)
+  : MovingObject(position, color, velocity, enemySize) {
+}
+
 void Enemy::render(Env *env) {
   int x = position().x();
   int y = position().y();

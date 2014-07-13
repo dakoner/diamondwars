@@ -73,6 +73,14 @@ class QtUI: public UI {
     l->setBrush( Qt::red );
     l->show();
   }
+  void text(int x, int y, std::string text) {
+    Q3CanvasText *t =  new Q3CanvasText(text.c_str(), c);
+    t->setX(x);
+    t->setY(y);
+    t->setTextFlags( Qt::AlignHCenter );
+    t->setColor( Qt::red );
+    t->show();
+  }
 
  private:
   QApplication *a;

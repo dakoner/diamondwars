@@ -5,6 +5,10 @@ Vec2 closest_point_on_seg(Vec2 seg_a, Vec2 seg_b, Vec2 circ_pos);
 
 Vec2 segment_circle(Vec2 seg_a, Vec2 seg_b, Vec2 circ_pos);
 
+bool collide(const Vec2& a, const Vec2& b, MovingObject* object);
+bool collide(MovingObject *a, MovingObject *b);
+
+
 #endif
 
 // Vec2 q;

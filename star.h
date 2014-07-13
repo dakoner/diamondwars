@@ -1,8 +1,10 @@
 #ifndef _STAR_H_
 #define _STAR_H_
+
+#define STAR_SIZE 12
 class Star: public MovingObject {
   public:
-    Star(Vec2 position, Color color, Vec2 velocity = Vec2(0, 0)): MovingObject(position, color, velocity) {
+  Star(Vec2 position, Color color, Vec2 velocity = Vec2(0, 0)): MovingObject(position, color, velocity, STAR_SIZE) {
     }
 
     void render(Env *env) {

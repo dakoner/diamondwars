@@ -12,7 +12,7 @@ class Object {
  public:
   Object() {
   }
- Object(Vec2 position, Color color): _position(position), _color(color) {
+ Object(Vec2 position, Color color, int size=1): _position(position), _color(color), _size(size) {
   }
   virtual void render(Env *env) = 0;
   virtual void update(Env *env) = 0;
@@ -36,10 +36,15 @@ class Object {
   Vec2* mutable_position() {
     return &_position;
   }
+
+  int size() {
+    return _size;
+  }
     
  private:
   Vec2 _position;
   Color _color;
+  int _size;
 };
 
 #endif

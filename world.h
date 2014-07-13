@@ -1,9 +1,7 @@
 #ifndef _WORLD_H_
 #define _WORLD_H_
 
-#ifndef ARDUINO
 #include <iostream>
-#endif
 
 #include <vector>
 
@@ -12,6 +10,9 @@
 #include "vec2.h"
 #include "color.h"
 #include "collision.h"
+
+#define NUM_HEIGHTS 48
+#define SPACING 20
 
 class World: public MovingObject {
 

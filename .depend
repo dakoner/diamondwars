@@ -1,23 +1,24 @@
 main.o: main.cpp constants.h color.h env.h ui.h vec2.h ship.h \
  moving_object.h object.h enemy.h random.h world.h collision.h star.h \
- bullet.h killable.h qt_ui.h qt_joystick.h joystick.h
+ bullet.h killable.h diamond.h qt_ui.h qt_joystick.h joystick.h
 enemy.o: enemy.cpp enemy.h moving_object.h object.h vec2.h color.h \
  constants.h ui.h random.h env.h ship.h world.h collision.h star.h \
- bullet.h killable.h
+ bullet.h killable.h diamond.h
 constants.o: constants.cpp constants.h color.h
 env.o: env.cpp env.h ui.h constants.h color.h vec2.h ship.h \
  moving_object.h object.h enemy.h random.h world.h collision.h star.h \
- bullet.h killable.h joystick.h
+ bullet.h killable.h diamond.h joystick.h
 vec2.o: vec2.cpp vec2.h
 random.o: random.cpp random.h
 ui.o: ui.cpp ui.h constants.h color.h
-collision.o: collision.cpp vec2.h
+collision.o: collision.cpp vec2.h moving_object.h object.h color.h \
+ constants.h ui.h
 world.o: world.cpp world.h moving_object.h object.h vec2.h color.h \
  constants.h ui.h enemy.h random.h collision.h env.h ship.h star.h \
- bullet.h killable.h
+ bullet.h killable.h diamond.h
 ship.o: ship.cpp ship.h vec2.h color.h constants.h moving_object.h \
  object.h ui.h env.h enemy.h random.h world.h collision.h star.h bullet.h \
- killable.h joystick.h
+ killable.h diamond.h joystick.h
 qt_joystick.o: qt_joystick.cpp qt_joystick.h joystick.h qt_ui.h ui.h \
  constants.h color.h
 joystick.o: joystick.cpp joystick.h

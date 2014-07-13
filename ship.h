@@ -9,17 +9,23 @@
 #include "env.h"
 #include "ui.h"
 
-#ifdef ARDUINO
-#include <Arduino.h>
-#endif
-
 class Ship: public MovingObject {
  public:
   Ship(Vec2 position, Color color, Vec2 velocity = Vec2(0, 0)); 
 
+  void decrement_shield();
+  void increment_shield();
+
+  void die();
+
+  void win();
+
   void render(Env *env);
 
   void update(Env *env);
+
+ private:
+  int shield;
 };
 
 #endif

@@ -1,5 +1,6 @@
 #ifndef _UI_H_
 #define _UI_H_
+#include <string>
 
 #include "constants.h"
 #ifdef ARDUINO
@@ -26,6 +27,7 @@ class UI {
   virtual void point(int x, int y) = 0;
   virtual void rect(int x1, int y1, int x2, int y2) = 0;
   virtual void line(int x1, int y1, int x2, int y2) = 0;
+  virtual void text(int x, int y, std::string t) = 0;
 
   virtual int width() { return _width; }
   virtual int height() { return _height; }

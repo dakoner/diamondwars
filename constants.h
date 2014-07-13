@@ -3,23 +3,27 @@
 #include "color.h"
 
 class Constants {
-  public:
+ public:
 
  Constants() :
   numStars(30), starSpeed(4), 
-  backgroundColor(0, 0, 0),
-  shipColor(255, 0, 0),
-  enemyColor(0, 0, 255),
-  worldColor(255, 255, 255),
-  starColor(127, 127, 0),
-  bulletColor(0, 255, 0) {
-}
+    numDiamonds(30),
+    backgroundColor(0, 0, 0),
+    shipColor(255, 0, 0),
+    diamondColor(255, 0, 0),
+    enemyColor(0, 0, 255),
+    worldColor(255, 255, 255),
+    starColor(127, 127, 0),
+    bulletColor(0, 255, 0) {
+  }
 
   int numStars;
   int starSpeed;
+  int numDiamonds;
 
   Color backgroundColor;
   Color shipColor;
+  Color diamondColor;
   Color enemyColor;
   Color worldColor;
   Color starColor;

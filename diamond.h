@@ -3,9 +3,11 @@
 
 #include "world.h"
 
+#define DIAMOND_SIZE 2
+
 class Diamond: public MovingObject {
   public:
-    Diamond(Vec2 position, Color color, Vec2 velocity = Vec2(0, 0)): MovingObject(position, color, velocity) {
+  Diamond(Vec2 position, Color color, Vec2 velocity = Vec2(0, 0)): MovingObject(position, color, velocity, DIAMOND_SIZE) {
     }
 
     void render(Env *env) {

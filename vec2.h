@@ -84,8 +84,13 @@ class Vec2
     return sqrt(_x * _x + _y * _y);
   }
 
+  /* Vec2 perp() { */
+  /*   Vec2 tmp(_y, _-x); */
+  /*   return tmp; */
+  /* } */
+
   Vec2 normal() {
-    Vec2 tmp(-_y, _x);
+    Vec2 tmp(_y, -_x);
     return tmp;
   }
   void normalize() {

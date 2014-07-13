@@ -9,10 +9,11 @@
 
 class Env;
 
+#define ENEMY_SIZE 12
+
 class Enemy: public MovingObject {
  public:
-  Enemy(Vec2 position, Color color, Vec2 velocity): MovingObject(position, color, velocity) {
-  }
+   Enemy(Vec2 position, Color color, Vec2 velocity);
 
   void render(Env *env);
 
