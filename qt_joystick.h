@@ -4,10 +4,6 @@
 #include "joystick.h"
 #include "qt_ui.h"
 
-#include <Qt/qapplication.h>
-#include <Qt/q3canvas.h>
-#include <Qt3Support/Q3CanvasItem>
-
 #include "constants.h"
 
 #include <unistd.h>

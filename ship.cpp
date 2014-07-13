@@ -91,6 +91,8 @@ void Ship::update(Env *env) {
   mutable_velocity()->set_y(velocity().y() + accel.y());
   mutable_position()->set_x(position().x() + velocity().x());
   mutable_position()->set_y(position().y() + velocity().y());
+
+  shipCollided = false;
 }
 
 void Ship::decrement_shield() {
@@ -107,3 +109,5 @@ void Ship::die() {
 void Ship::win() {
   std::cout << "You won!" << std::endl;
 }
+
+shipCollided = false;
