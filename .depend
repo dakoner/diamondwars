@@ -23,3 +23,8 @@ qt_joystick.o: qt_joystick.cpp qt_joystick.h joystick.h qt_ui.h ui.h \
  constants.h color.h
 joystick.o: joystick.cpp joystick.h
 qt_ui.o: qt_ui.cpp qt_ui.h ui.h constants.h color.h
+diamond.o: diamond.cpp diamond.h world.h moving_object.h object.h vec2.h \
+ color.h constants.h ui.h enemy.h random.h collision.h
+star.o: star.cpp star.h world.h moving_object.h object.h vec2.h color.h \
+ constants.h ui.h enemy.h random.h collision.h env.h ship.h bullet.h \
+ killable.h diamond.h

@@ -14,10 +14,10 @@ void EsploraUI::text(int x, int y, std::string t) {
   EsploraTFT.text(t.c_str(), x, y);
 }
 
-void EsploraUI::stroke(char r, char g, char b) {
+void EsploraUI::stroke(int r, int g, int b) {
   EsploraTFT.stroke(r, g, b);
 }
-void EsploraUI::fill(char r, char g, char b) {
+void EsploraUI::fill(int r, int g, int b) {
   EsploraTFT.fill(r, g, b);
 }
 

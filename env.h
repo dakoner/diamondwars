@@ -16,6 +16,7 @@
 #include "diamond.h"
 
 class Ship;
+class Star;
 
 class Env {
  public:

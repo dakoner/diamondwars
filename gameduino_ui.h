@@ -14,20 +14,20 @@ public:
 
   void draw();
 
-  void stroke(char r, char g, char b);
-  void fill(char r, char g, char b);
+  void stroke(int r, int g, int b);
+  void fill(int r, int g, int b);
   void point(int x, int y);
   void rect(int x1, int y1, int x2, int y2);
   void line(int x1, int y1, int x2, int y2);
   void text(int x, int y, std::string text);
 
 private:
-  char strokeR;
-  char strokeG;
-  char strokeB;
-  char fillR;
-  char fillG;
-  char fillB;
+  int strokeR;
+  int strokeG;
+  int strokeB;
+  int fillR;
+  int fillG;
+  int fillB;
 };
 
 

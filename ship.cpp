@@ -43,10 +43,6 @@ void Ship::update(Env *env) {
   }
 
   env->getWorld()->mutable_velocity()->set_x(-velocity().x()*2);
-  std::vector<Star>* stars = env->getStars();
-  for (std::vector<Star>::iterator star = stars->begin(); star != stars->end(); ++star) {
-    star->mutable_velocity()->set_x(-velocity().x());
-  }
 
   std::vector<Diamond>* diamonds = env->getDiamonds();
   for (std::vector<Diamond>::iterator diamond = diamonds->begin(); diamond != diamonds->end(); ++diamond) {

@@ -9,9 +9,9 @@ class DummyUI: public UI {
  DummyUI(): UI(256, 256) {
   }
 
-  void stroke(char r, char g, char b) {
+  void stroke(int r, int g, int b) {
   }
-  void fill(char r, char g, char b) {
+  void fill(int r, int g, int b) {
   }
   void point(int x, int y) {
   }

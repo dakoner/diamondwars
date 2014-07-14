@@ -23,7 +23,7 @@ class Constants {
     numDiamonds(30),
     backgroundColor(0, 0, 0),
     shipColor(255, 0, 0),
-    diamondColor(255, 0, 0),
+    diamondColor(255, 255, 0),
     enemyColor(0, 0, 255),
     worldColor(255, 255, 255),
     starColor(127, 127, 0),

@@ -13,8 +13,8 @@ class UI {
   virtual void clear() = 0;
   virtual void draw() = 0;
 
-  virtual void stroke(char r, char g, char b) = 0;
-  virtual void fill(char r, char g, char b) = 0;
+  virtual void stroke(int r, int g, int b) = 0;
+  virtual void fill(int r, int g, int b) = 0;
   virtual void point(int x, int y) = 0;
   virtual void rect(int x1, int y1, int x2, int y2) = 0;
   virtual void line(int x1, int y1, int x2, int y2) = 0;

@@ -18,8 +18,8 @@ class EsploraUI: public UI {
 
   void text(int x, int y, std::string t);
 
-  void stroke(char r, char g, char b);
-  void fill(char r, char g, char b);
+  void stroke(int r, int g, int b);
+  void fill(int r, int g, int b);
 
   void point(int x, int y);
   void rect(int x1, int y1, int x2, int y2);
