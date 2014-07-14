@@ -20,8 +20,10 @@ void Enemy::render(Env *env) {
 void Enemy::update(Env *env) {
   const std::vector<std::pair<Vec2, Vec2> >& lines = env->getWorld()->getLines();
   for (std::vector<std::pair<Vec2, Vec2> >::const_iterator it = lines.begin(); it != lines.end(); ++it) {
-    const Vec2& v = it->first;
-    const Vec2& w = it->second;
+    Vec2 v = it->first;
+    v.set_x(v.x() + env->getWorld()->position().x());
+    Vec2 w = it->second;
+    w.set_x(w.x() + env->getWorld()->position().x());
     ::collide(v, w, this);
   }
 

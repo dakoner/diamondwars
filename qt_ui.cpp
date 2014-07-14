@@ -23,7 +23,6 @@ void QtUI::clear() {
 }
 
 void QtUI::draw() {
-  // c->update();
   a->processEvents();
   /* usleep(500); */
   scene->clear();

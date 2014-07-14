@@ -4,16 +4,6 @@
 #include <string>
 
 #include "constants.h"
-#ifdef ARDUINO
-#include <Arduino.h>
-#include <Esplora.h>
-#else
-typedef enum {
-  PRESSED  = 0,
-  NOT_PRESSED = 1,
-} Digivalue;
-const unsigned char SWITCH_1       = 1;
-#endif
 
 
 class UI {

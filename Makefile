@@ -1,6 +1,6 @@
 CXXFLAGS=-std=c++11 -g -I/usr/include/qt4
-LOADLIBES=-lSDL2 -lQtCore -lQtGui
-SOURCES=main.cpp enemy.cpp constants.cpp env.cpp vec2.cpp random.cpp ui.cpp collision.cpp world.cpp ship.cpp qt_joystick.cpp joystick.cpp qt_ui.cpp
+LOADLIBES=-lQtCore -lQtGui
+SOURCES=qt_main.cpp enemy.cpp constants.cpp env.cpp vec2.cpp random.cpp ui.cpp collision.cpp world.cpp ship.cpp qt_joystick.cpp joystick.cpp qt_ui.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 all: main
 

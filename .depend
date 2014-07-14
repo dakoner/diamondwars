@@ -1,4 +1,4 @@
-main.o: main.cpp constants.h color.h env.h ui.h vec2.h ship.h \
+qt_main.o: qt_main.cpp constants.h color.h env.h ui.h vec2.h ship.h \
  moving_object.h object.h enemy.h random.h world.h collision.h star.h \
  bullet.h killable.h diamond.h qt_ui.h qt_joystick.h joystick.h
 enemy.o: enemy.cpp enemy.h moving_object.h object.h vec2.h color.h \

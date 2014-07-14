@@ -1,5 +1,5 @@
-#ifndef _ARDUINO_JOYSTICK_H_
-#define _ARDUINO_JOYSTICK_H_
+#ifndef _ESPLORA_JOYSTICK_H_
+#define _ESPLORA_JOYSTICK_H_
 
 #include "joystick.h"
 

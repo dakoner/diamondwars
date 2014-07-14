@@ -12,7 +12,7 @@
 #include "color.h"
 #include "collision.h"
 
-#define NUM_HEIGHTS 48
+#define NUM_HEIGHTS 4
 #define SPACING 20
 
 class World: public MovingObject {

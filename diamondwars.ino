@@ -1,23 +1,24 @@
-#include <Esplora.h>
-#include <TFT.h>
-#include <SPI.h>
-
+#include <Arduino.h>
+#include <stdlib.h>
 #include <pnew.cpp>
+
+#include <SPI.h>
+#include <GD.h>
 
 #include "constants.h"
 #include "env.h"
-#include "esplora_ui.h"
-#include "esplora_joystick.h"
+#include "gameduino_ui.h"
+#include "dummy_joystick.h"
 
 void setup() {
   constants = new Constants();
-  ui = new EsploraUI();
+  ui = new GameduinoUI();
+  joystick = new DummyJoystick();
   env = new Env();
-  joystick = new EsploraJoystick();
 }
 
 
 void loop() {
   env->loop();
-  delay(50);
+  // delay(100);
 }

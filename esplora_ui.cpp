@@ -1,3 +1,4 @@
+#ifdef ESPLORA
 #include "esplora_ui.h"
 EsploraUI::EsploraUI(): UI(EsploraTFT.width(), EsploraTFT.height()) {
   EsploraTFT.begin();
@@ -29,3 +30,4 @@ void EsploraUI::rect(int x1, int y1, int x2, int y2) {
 void EsploraUI::line(int x1, int y1, int x2, int y2) {
   EsploraTFT.line(x1, y1, x2, y2);
 }
+#endif
